@@ -13,7 +13,7 @@ function Navbar() {
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <Link to="/voterIDApplication" class="flex items-center">
                     <img src={VoteIN_Logo} class="h-10 w-10 mr-3" alt="Vote Now" />
-                    <span class="self-center text-2xl text-gray-800 font-bold whitespace-nowrap ">Vote IN</span>
+                    <span class="self-center text-2xl text-gray-800 font-bold whitespace-nowrap ">VoteIN</span>
                 </Link>
                 <div class="flex md:order-2">
                     {

@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import About from './pages/About';
 import Dashboard from './pages/Dashboard';
 import NotAuthorized from './pages/NotAuthorized';
+import P404 from './pages/P404';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/About" element={<About />} />
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/NotAuthorized" element={<NotAuthorized />} />
+          <Route path="/*" element={<P404 />} />
           <Route />
         </Routes>
         <Footer />

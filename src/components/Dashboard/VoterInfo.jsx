@@ -8,6 +8,8 @@ function Dashboard() {
         <div>
             { !isAuthenticated && <Navigate to="/NotAuthorized" replace={true}/>}
         
+        
+        
         </div>
 
     );
