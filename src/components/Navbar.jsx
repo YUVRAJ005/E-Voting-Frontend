@@ -1,10 +1,14 @@
 import React from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom'
 import VoteIN_Logo from '../assets/VoteIN_Logo.png';
+import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 
 function Navbar() {
+    const { isAuthenticated } = useAuth0();
     return (
+
         <nav class="bg-white fixed w-full z-20 top-0 left-0 border-gray-200">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <Link to="/voterIDApplication" class="flex items-center">
@@ -12,7 +16,9 @@ function Navbar() {
                     <span class="self-center text-2xl text-gray-800 font-bold whitespace-nowrap ">Vote IN</span>
                 </Link>
                 <div class="flex md:order-2">
-                    <LogoutButton />
+                    {
+                        isAuthenticated ? (<LogoutButton />) : (<LoginButton />)
+                    }
                 </div>
                 <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
 

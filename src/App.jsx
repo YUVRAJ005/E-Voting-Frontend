@@ -1,12 +1,12 @@
 import React from 'react';
-import WebHome from './pages/WebHome';
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom'
-import VoterIdApplication from './components/voterIdApplication';
-import HomeSec from './components/HomeSec';
+import VoterIdApplication from './pages/voterIdApplication';
+import HomeSec from './pages/HomeSec';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import About from './components/About';
+import About from './pages/About';
 import Dashboard from './pages/Dashboard';
+import NotAuthorized from './pages/NotAuthorized';
 
 function App() {
   return (
@@ -19,10 +19,12 @@ function App() {
           <Route path="/voterIdApplication" element={<VoterIdApplication />} />
           <Route path="/About" element={<About />} />
           <Route path="/Dashboard" element={<Dashboard />} />
+          <Route path="/NotAuthorized" element={<NotAuthorized />} />
+          <Route />
         </Routes>
         <Footer />
       </BrowserRouter>
-
+      
     </div>
 
   );

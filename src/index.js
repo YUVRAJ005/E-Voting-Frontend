@@ -11,7 +11,7 @@ root.render(
     domain = {auth0domain}
     clientId = {auth0clientId}
     authorizationParams={{
-      redirect_uri: window.location.origin
+      redirect_uri: window.location.origin + "/Dashboard"
     }}>
 
     <React.StrictMode>

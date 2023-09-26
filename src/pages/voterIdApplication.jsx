@@ -1,9 +1,13 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 
 function VoterIdApplication() {
     return (
+        
         <div>
+            <Navbar />
             <h1 class="text-5xl font-bold mx-48 mt-36 font-mono">Voter ID Application</h1>
             <div class="mx-48 my-10 rounded overflow-hidden shadow-lg" >
                 <div class="mx-10 my-10">
@@ -46,6 +50,7 @@ function VoterIdApplication() {
                     </form>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 }

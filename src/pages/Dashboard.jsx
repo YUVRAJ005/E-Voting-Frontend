@@ -1,16 +1,15 @@
 import React from 'react';
-
+import {Link, Navigate } from 'react-router-dom'
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Dashboard() {
+    const { loginWithRedirect } = useAuth0();
+    const { isAuthenticated} = useAuth0();
     return (
         <div>
-            <h1 class="text-5xl font-bold mx-48 my-36 font-mono">Dashboard</h1>
-            <div class="mx-48 my-10 rounded overflow-hidden shadow-lg" >
-                <div class="mx-10 my-10">
-                    
-                </div>
-            </div>
+            { !isAuthenticated && <Navigate to="/NotAuthorized" replace={true}/>}
         </div>
+
     );
 }
 
