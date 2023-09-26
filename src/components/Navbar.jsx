@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom'
 import VoteIN_Logo from '../assets/VoteIN_Logo.png';
+import LogoutButton from './LogoutButton';
 
 function Navbar() {
     return (
@@ -11,7 +12,7 @@ function Navbar() {
                     <span class="self-center text-2xl text-gray-800 font-bold whitespace-nowrap ">Vote IN</span>
                 </Link>
                 <div class="flex md:order-2">
-                    <button type="button" class="text-white border bg-gray-800 border-orange-500 hover:bg-gray-700 focus:ring-4 focus:ring-orange-300 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0">Logout</button>
+                    <LogoutButton />
                 </div>
                 <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
 
