@@ -1,3 +1,3 @@
 # Blockchain Based Online Voting System
 
-Scalable and transparent online voting system using blockchain and IPFS
+Frontend developed using React.JS for Scalable and transparent blockchain and IPFS based online voting system.
