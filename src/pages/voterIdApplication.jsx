@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import ReactDOM from 'react-dom/client';
 import ApplicationSuccess from '../components/ApplicationSuccess';
 
 
