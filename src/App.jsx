@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import VoterIdApplication from './pages/voterIdApplication';
 import HomeSec from './pages/HomeSec';
 import Navbar from './components/Navbar';
