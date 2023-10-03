@@ -39,11 +39,6 @@ function Navbar() {
                                     Results
                                 </Link>
                             </li>
-                            <li class="mr-2">
-                                <Link to="/About" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-orange-600 hover:border-gray-300 ">
-                                    About
-                                </Link>
-                            </li>
                         </ul>
                     </div>
                 </div>

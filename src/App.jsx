@@ -6,7 +6,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import About from './pages/About';
 import Dashboard from './pages/Dashboard';
-import NotAuthorized from './pages/NotAuthorized';
+import NotAuthorized from './components/NotAuthorized';
 import P404 from './pages/P404';
 
 function App() {
