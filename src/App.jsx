@@ -8,6 +8,7 @@ import About from './pages/About';
 import Dashboard from './pages/Dashboard';
 import NotAuthorized from './components/NotAuthorized';
 import P404 from './pages/P404';
+import Vote from './pages/Vote';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/About" element={<About />} />
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/NotAuthorized" element={<NotAuthorized />} />
+          <Route path="/Vote" element={<Vote />} />
           <Route path="/*" element={<P404 />} />
           <Route />
         </Routes>

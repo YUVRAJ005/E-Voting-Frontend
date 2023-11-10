@@ -11,7 +11,6 @@ module.exports = {
       sepolia: {
         url: process.env.REACT_APP_SEPOLIA_RPC_URL,
         accounts: [process.env.REACT_APP_AcDep_PRIVATE_KEY],
-        chainId: 11155111,
       },
   }
 };
