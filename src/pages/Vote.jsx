@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Navigate, Redirect, useNavigate } from 'react-router-dom'
+import { Link, Navigate, Redirect, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
 import Loading from '../components/Loading';
-import VoterProfile from '../components/Dashboard/VoterProfile'
-//import CandidateCard from '../components/Dashboard/CandidateCard';
 import abi from '../artifacts/contracts/Ballot.sol/Ballot.json';
 require('dotenv').config();
 const ethers = require("ethers");
@@ -15,9 +13,9 @@ function Vote() {
     const [walletAddress, setWalletAddress] = useState("");
 
     const [contract, setContract] = useState(null);
-    const [candidate, setCandidate] = useState();
+    const [candidate, setCandidate] = useState([]);
     const [election, setElection] = useState();
-    const [candidateList, setcandidateList] = useState();
+
     // const voteConfirmNavigate = useNavigate();
 
     // function handleCandidateClick(candidateinfo) {
@@ -31,20 +29,20 @@ function Vote() {
             const contractABI = abi.abi;
 
             const provider = new ethers.JsonRpcProvider(process.env.REACT_APP_SEPOLIA_RPC_URL);
-            const contract = new ethers.Contract(
+            const contractFetched = new ethers.Contract(
                 contractAddress,
                 contractABI,
                 provider
             );
 
+            setContract(contractFetched);
             let elec = await contract.getElection();
-            console.log("Election name is : " + elec);
-            //setContract(contract);
             setElection(elec);
+            console.log("Election name is : " + election);
             let candidates = await contract.getCandidates();
             setCandidate(candidates);
-            console.log(candidates[0][0])
-            console.log(candidates[1][0])
+            // console.log(candidate[0][0])
+            // console.log(candidate[1][0])
 
         } catch (error) {
             console.log(error);
@@ -86,21 +84,17 @@ function Vote() {
         }
     };
 
-    const setDetails = async () => {
-        const clist = candidate.map((candidateinfo) =>
-            <div>
-                <div class="each flex rounded shadow w-max text-grey-600 mb-5 bg-white">
-                    <div class="sec self-center p-2 pr-1"><img data="picture" class="h-20 w-200 border p-0.5 square-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1-MG1E0b4Ylgp-wnZjy82g3ZKHyx_FVDy00FfqqOk5y8euX43uhU4lN11y1qkG_Pjhwc" alt="" /></div>
-                    <div class="sec self-center p-2 w-64">
-                        <div class="name text-lg">{candidateinfo[0]}</div>
-                        <div class="title text-base text-gray-800 -mt-1">{candidateinfo[1]}</div>
-                    </div>
+    const clist = candidate.map((candidateinfo) =>
+        <div>
+            <div class="each flex rounded shadow w-max text-grey-600 mb-5 bg-white">
+                <div class="sec self-center p-2 pr-1"><img data="picture" class="h-20 w-200 border p-0.5 square-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1-MG1E0b4Ylgp-wnZjy82g3ZKHyx_FVDy00FfqqOk5y8euX43uhU4lN11y1qkG_Pjhwc" alt="" /></div>
+                <div class="sec self-center p-2 w-64">
+                    <div class="name text-lg">{candidateinfo[0]}</div>
+                    <div class="title text-base text-gray-800 -mt-1">{candidateinfo[1]}</div>
                 </div>
             </div>
-        );
-        setcandidateList(clist);
-    };
-
+        </div>
+    );
 
     useEffect(() => {
         if (!isLoading && !isAuthenticated) {
@@ -112,28 +106,13 @@ function Vote() {
         }
         getCurrentWalletConnected();
         addWalletListener();
-        fetchdetails();
-        setDetails();
+        fetchdetails()
 
-    }, [isLoading, isAuthenticated, walletAddress]);
+    }, [isLoading, isAuthenticated, walletAddress, ]);
 
     if (isLoading || !isAuthenticated) {
         return <Loading loading={isLoading} size="large" />;
     }
-
-    // var candidates = [{ "Candidate": "ABC", "Party": "BJP" }, { "Candidate": "DEF", "Party": "Congress" }];
-
-    // const todoItems = candidates.map((candidate) =>
-    //     <div>
-    //         <div class="each flex rounded shadow w-max text-grey-600 mb-5 bg-white">
-    //             <div class="sec self-center p-2 pr-1"><img data="picture" class="h-20 w-200 border p-0.5 square-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1-MG1E0b4Ylgp-wnZjy82g3ZKHyx_FVDy00FfqqOk5y8euX43uhU4lN11y1qkG_Pjhwc" alt="" /></div>
-    //             <div class="sec self-center p-2 w-64">
-    //                 <div class="name text-lg">{candidate.Candidate}</div>
-    //                 <div class="title text-base text-gray-800 -mt-1">{candidate.Party}</div>
-    //             </div>
-    //         </div>
-    //     </div>
-    // );
 
     return (
         <div>
@@ -147,10 +126,9 @@ function Vote() {
                     )}.....${walletAddress.substring(35)}`
                     : ""}</h1>
             </div>
-
             <div class="flex flex-col justify-center items-center  pt-4">
                 <div class="grid grid-cols-3 gap-5">
-                    {candidateList}
+                    {clist}
                 </div>
             </div>
 
@@ -160,5 +138,5 @@ function Vote() {
     );
 
 }
-
+//<CandidateCard state={{ candidate: candidate }} />
 export default Vote;
