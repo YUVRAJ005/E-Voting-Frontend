@@ -9,6 +9,9 @@ import Dashboard from './pages/Dashboard';
 import NotAuthorized from './components/NotAuthorized';
 import P404 from './pages/P404';
 import Vote from './pages/Vote';
+import VoteConfirm from './pages/VoteConfirm';
+import VoteSuccess from './pages/VoteSuccess';
+import VoteFail from './pages/VoteFail';
 
 function App() {
   return (
@@ -23,6 +26,9 @@ function App() {
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/NotAuthorized" element={<NotAuthorized />} />
           <Route path="/Vote" element={<Vote />} />
+          <Route path="/VoteConfirm" element={<VoteConfirm />} />
+          <Route path="/VoteSuccess" element={<VoteSuccess />} />
+          <Route path="/VoteFail" element={<VoteFail />} />
           <Route path="/*" element={<P404 />} />
           <Route />
         </Routes>

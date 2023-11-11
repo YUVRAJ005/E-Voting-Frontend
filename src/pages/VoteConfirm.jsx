@@ -1,57 +1,82 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Navigate, Redirect, useNavigate } from 'react-router-dom'
+import { Link, Navigate, Redirect, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
 import Loading from '../components/Loading';
-import VoterProfile from '../components/Dashboard/VoterProfile'
-//import CandidateCard from '../components/Dashboard/CandidateCard';
 import abi from '../artifacts/contracts/Ballot.sol/Ballot.json';
 require('dotenv').config();
 const ethers = require("ethers");
 
-function Vote() {
+function VoteConfirm() {
+    const location = useLocation([]);
+    console.log(location.state)
 
     const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
 
     const [walletAddress, setWalletAddress] = useState("");
-
-    const [contract, setContract] = useState();
     const [candidate, setCandidate] = useState();
     const [election, setElection] = useState();
-    //const voteConfirmNavigate = useNavigate();
-    
-    function handleConfirmVote(candidateinfo) {
-        //voteConfirmNavigate("/VoteConfirm", candidateinfo);
-    }
+    const [account, setAccount] = useState("");
+    const [party, setParty] = useState();
 
-    
-    const fetchdetails = async () => {
+    const voteSuccessNavigate = useNavigate();
+    const voteFailNavigate = useNavigate();
+
+    // const addVote = async () => {
+    //     try {
+    //         const contractAddress = process.env.REACT_APP_contractAddress;
+    //         const contractABI = abi.abi;
+
+    //         const provider = new ethers.BrowserProvider(window.ethereum);
+    //         const signer = await provider.getSigner();
+    //         console.log(await signer.getAddress());
+    //         const contractFetched = new ethers.Contract(
+    //             contractAddress,
+    //             contractABI,
+    //             signer
+    //         );
+
+    //         // setContract(contractFetched);
+    //         // let elec = await contract.getElection();
+    //         // setElection(elec);
+    //         // console.log("Election name is : " + election);
+    //         // let candidates = await contract.getCandidates();
+    //         // setCandidate(candidates);
+    //         // // console.log(candidate[0][0])
+    //         // // console.log(candidate[1][0])
+    //         const transaction = await contractFetched.vote(account);
+    //         await transaction.wait();
+    //         console.log("Transaction Success");
+
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+
+    // };
+
+    async function confirmVoteClick() {
         try {
+            console.log("Confirm vote " + account);
             const contractAddress = process.env.REACT_APP_contractAddress;
             const contractABI = abi.abi;
-            const { ethereum } = window;
-            if (ethereum) {
 
-                const provider = new ethers.JsonRpcProvider(process.env.REACT_APP_SEPOLIA_RPC_URL);
-                const contract = new ethers.Contract(
-                    contractAddress,
-                    contractABI,
-                    provider
-                );
+            const provider = new ethers.BrowserProvider(window.ethereum);
+            const signer = await provider.getSigner();
+            console.log(await signer.getAddress());
+            const contractFetched = new ethers.Contract(
+                contractAddress,
+                contractABI,
+                signer
+            );
 
-                let elec = await contract.getElection();
-                console.log("Election name is : " + elec);
-                setContract(contract);
-                setElection(elec);
-            
-
-            } else {
-                alert("Please install metamask");
-            }
-        } catch (error) {
-            console.log(error);
+            const transaction = await contractFetched.vote(account);
+            await transaction.wait();
+            console.log("Transaction Success");
+            voteSuccessNavigate("/VoteSuccess");
+        } catch (err) {
+            console.error(err);
+            voteFailNavigate("/VoteFail", {state : {errr: err}});
         }
-
-    };
+    }
 
     const getCurrentWalletConnected = async () => {
         if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
@@ -87,7 +112,6 @@ function Vote() {
         }
     };
 
-
     useEffect(() => {
         if (!isLoading && !isAuthenticated) {
             loginWithRedirect({
@@ -96,18 +120,19 @@ function Vote() {
                 },
             });
         }
+        setCandidate(location.state.candidatename);
+        setAccount(location.state.account);
+        setElection(location.state.election);
+        setParty(location.state.party);
         getCurrentWalletConnected();
         addWalletListener();
-        fetchdetails();
+        // addVote()
 
-    }, [isLoading, isAuthenticated, walletAddress]);
+    }, [isLoading, isAuthenticated, walletAddress,]);
 
     if (isLoading || !isAuthenticated) {
         return <Loading loading={isLoading} size="large" />;
     }
-
-    //var candidates = [{ "Candidate": "ABC", "Party": "BJP" }, { "Candidate": "DEF", "Party": "Congress" }];
-
 
     return (
         <div>
@@ -121,26 +146,29 @@ function Vote() {
                     )}.....${walletAddress.substring(35)}`
                     : ""}</h1>
             </div>
-
-            <div class="flex flex-col justify-center items-center  pt-4">
-                <div class="grid grid-cols-3 gap-5">
-                <div>
-            <div class="each flex rounded shadow w-max text-grey-600 mb-5 bg-white">
-                <div class="sec self-center p-2 pr-1"><img data="picture" class="h-20 w-200 border p-0.5 square-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1-MG1E0b4Ylgp-wnZjy82g3ZKHyx_FVDy00FfqqOk5y8euX43uhU4lN11y1qkG_Pjhwc" alt="" /></div>
-                <div class="sec self-center p-2 w-64">
-                    <div class="name text-lg">{candidate[0]}</div>
-                    <div class="title text-base text-gray-800 -mt-1">{candidate[1]}</div>
+            <div class="container px-10 mx-0 py-5 min-w-full flex flex-col items-center ">
+                <div class="each flex rounded shadow text-grey-600 m-5 w-1/2 bg-gray-50 hover:bg-white" >
+                    <div class="sec self-center p-10"><img data="picture" class="h-32 w-32 border p-0.5 square-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1-MG1E0b4Ylgp-wnZjy82g3ZKHyx_FVDy00FfqqOk5y8euX43uhU4lN11y1qkG_Pjhwc" alt="" /></div>
+                    <div class="sec self-center p-2 w-64">
+                        <div class="name text-2xl font-bold py-2">{candidate}</div>
+                        <div class="title text-xl font-semibold text-gray-800 -mt-1 py-2">{party}</div>
+                        <div class="title text-xl font-semibold text-gray-800 -mt-1 py-2">{account.substring(
+                            0,
+                            14
+                        )}.....{account.substring(30)}</div>
+                    </div>
                 </div>
-            </div>
-        </div>
-                </div>
-            </div>
 
+                <button onClick={confirmVoteClick} type="button" class="flex flex-col items-center py-2 px-4 text-3xl font-medium text-center text-white border bg-gray-800 border-orange-500 hover:bg-gray-700 focus:ring-4 focus:ring-orange-300 focus:outline-none rounded-lg mr-3 md:mr-0">
+                    Confirm Vote
+                </button>
+
+            </div>
 
         </div>
 
     );
 
 }
-
-export default Vote;
+//<CandidateCard state={{ candidate: candidate }} />
+export default VoteConfirm;
