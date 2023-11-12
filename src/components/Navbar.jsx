@@ -11,7 +11,7 @@ function Navbar() {
 
         <nav class="bg-white fixed w-full z-20 top-0 left-0 border-gray-200">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <Link to="/voterIDApplication" class="flex items-center">
+                <Link to="/" class="flex items-center">
                     <img src={VoteIN_Logo} class="h-10 w-10 mr-3" alt="Vote Now" />
                     <span class="self-center text-2xl text-gray-800 font-bold whitespace-nowrap ">VoteIN</span>
                 </Link>
@@ -24,18 +24,14 @@ function Navbar() {
 
                     <div class="text-base font-medium text-center text-gray-800 border-b border-gray-200 ">
                         <ul class="flex flex-wrap -mb-px">
-                            <li class="mr-2">
-                                <Link to="/" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-orange-600 hover:border-gray-300 ">
-                                    Home
-                                </Link>
-                            </li>
+                            
                             <li class="mr-2">
                                 <Link to="/" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-orange-600 hover:border-gray-300 ">
                                     Live
                                 </Link>
                             </li>
                             <li class="mr-2">
-                                <Link to="/" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-orange-600 hover:border-gray-300 ">
+                                <Link to="/Results" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-orange-600 hover:border-gray-300 ">
                                     Results
                                 </Link>
                             </li>

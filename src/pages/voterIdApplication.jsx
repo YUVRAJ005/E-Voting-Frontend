@@ -40,7 +40,7 @@ function VoterIdApplication() {
         <div>
             {!submitted &&
                 <div>
-                    <h1 class="text-5xl font-bold mx-48 mt-36 font-mono">Voter ID Application</h1>
+                    <h1 class="text-3xl font-bold mx-48 mt-36 font-mono">Voter ID Application</h1>
                     <div class="mx-48 my-10 rounded overflow-hidden shadow-lg" >
                         <div class="mx-10 my-10">
                             <form onSubmit={handleSubmit}>

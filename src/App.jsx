@@ -12,6 +12,7 @@ import Vote from './pages/Vote';
 import VoteConfirm from './pages/VoteConfirm';
 import VoteSuccess from './pages/VoteSuccess';
 import VoteFail from './pages/VoteFail';
+import Results from './pages/Results';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/VoteConfirm" element={<VoteConfirm />} />
           <Route path="/VoteSuccess" element={<VoteSuccess />} />
           <Route path="/VoteFail" element={<VoteFail />} />
+          <Route path="/Results" element={<Results />} />
           <Route path="/*" element={<P404 />} />
           <Route />
         </Routes>

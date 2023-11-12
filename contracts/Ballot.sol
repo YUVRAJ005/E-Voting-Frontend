@@ -32,6 +32,8 @@ contract Ballot {
 
     mapping(address => uint256) index;
 
+    mapping(string => bool) accountUsed;
+
     Candidate[] candidates;
 
     /**
@@ -84,13 +86,14 @@ contract Ballot {
      * @dev Give your vote (including votes delegated to you) to proposal 'proposals[proposal].name'.
      * @param proposal index of proposal in the proposals array
      */
-    function vote(address proposal) public {
+    function vote(address proposal, string memory email) public {
         require(
             block.timestamp > startTime && block.timestamp < endTime,
             "Should vote in voting duration."
         );
         Voter storage sender = voters[msg.sender];
-        require(!sender.voted, "Already voted.");
+        require(accountUsed[email]==false && !sender.voted, "Already voted.");
+        accountUsed[email] = true;
         sender.voted = true;
         sender.vote = proposal;
 
@@ -136,4 +139,5 @@ contract Ballot {
     function getElection() public view returns (string memory) {
         return ballotName;
     }
+
 }

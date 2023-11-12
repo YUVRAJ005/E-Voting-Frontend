@@ -87,7 +87,7 @@ function Vote() {
 
     const clist = candidate.map((candidateinfo) =>
         <div key={candidateinfo[2]}>
-            <div class="each flex rounded shadow w-max text-grey-600 mb-5 bg-white">
+            <div class="each flex rounded shadow w-max text-grey-600 mb-5 hover:bg-white bg-gray-50">
                 <div class="sec self-center p-2 pr-1"><img data="picture" class="h-20 w-200 border p-0.5 square-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1-MG1E0b4Ylgp-wnZjy82g3ZKHyx_FVDy00FfqqOk5y8euX43uhU4lN11y1qkG_Pjhwc" alt="" /></div>
                 <div class="sec self-center p-2 w-64">
                     <div onClick={() => handleCandidateClick(candidateinfo)}  class="name text-lg">{candidateinfo[0]}</div>

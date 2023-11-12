@@ -17,41 +17,10 @@ function VoteConfirm() {
     const [election, setElection] = useState();
     const [account, setAccount] = useState("");
     const [party, setParty] = useState();
+    const { user } = useAuth0();
 
     const voteSuccessNavigate = useNavigate();
     const voteFailNavigate = useNavigate();
-
-    // const addVote = async () => {
-    //     try {
-    //         const contractAddress = process.env.REACT_APP_contractAddress;
-    //         const contractABI = abi.abi;
-
-    //         const provider = new ethers.BrowserProvider(window.ethereum);
-    //         const signer = await provider.getSigner();
-    //         console.log(await signer.getAddress());
-    //         const contractFetched = new ethers.Contract(
-    //             contractAddress,
-    //             contractABI,
-    //             signer
-    //         );
-
-    //         // setContract(contractFetched);
-    //         // let elec = await contract.getElection();
-    //         // setElection(elec);
-    //         // console.log("Election name is : " + election);
-    //         // let candidates = await contract.getCandidates();
-    //         // setCandidate(candidates);
-    //         // // console.log(candidate[0][0])
-    //         // // console.log(candidate[1][0])
-    //         const transaction = await contractFetched.vote(account);
-    //         await transaction.wait();
-    //         console.log("Transaction Success");
-
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-
-    // };
 
     async function confirmVoteClick() {
         try {
@@ -68,7 +37,7 @@ function VoteConfirm() {
                 signer
             );
 
-            const transaction = await contractFetched.vote(account);
+            const transaction = await contractFetched.vote(account, user.email);
             await transaction.wait();
             console.log("Transaction Success");
             voteSuccessNavigate("/VoteSuccess");
