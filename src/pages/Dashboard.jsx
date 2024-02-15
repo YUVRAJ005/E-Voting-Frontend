@@ -3,7 +3,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
 import VoterProfile from '../components/Dashboard/VoterProfile';
 import Loading from '../components/Loading';
-import abi from '../artifacts/contracts/Ballot.sol/Ballot.json';
+import abi from '../artifacts/contracts/Election.sol/Election.json';
 require('dotenv').config();
 const ethers = require("ethers");
 

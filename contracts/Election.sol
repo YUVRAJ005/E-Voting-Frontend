@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: GPL-3.0
-// "City Election",1699401600,1731024000,["0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2","0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db"],["Nitin Gadkari", "Rahul Gandhi"],["BJP","Congress"]
+// "NITR Election",1699401600,1731024000,["0x85c74224865C5053e95498Aa81ed968002bfdD72","0x7f25A6Bc607aA77D8C9dda4EbF72cBD1eE3113F4"],["Candidate A", "Candidate B"],["Party A","Party B"]
 
 pragma solidity 0.8.19;
 
 /**
- * @title Ballot
+ * @title Election
  * @dev Implements voting process along with vote delegation
  */
-contract Ballot {
+contract Election {
     string ballotName;
     uint256 startTime;
     uint256 endTime;
@@ -64,8 +64,7 @@ contract Ballot {
             // 'Proposal({...})' creates a temporary
             // Proposal object and 'proposals.push(...)'
             // appends it to the end of 'proposals'.
-            uint ind = index[candidateaccount[i]];
-            ind = i;
+            index[candidateaccount[i]] = i;
             candidates.push(
                 Candidate({
                     candidateAccount: candidateaccount[i],
@@ -93,8 +92,8 @@ contract Ballot {
         );
         Voter storage sender = voters[msg.sender];
         require(accountUsed[email]==false && !sender.voted, "Already voted.");
-        accountUsed[email] = true;
-        sender.voted = true;
+        //accountUsed[email] = true;
+        //sender.voted = true;
         sender.vote = proposal;
 
         // If 'proposal' is out of the range of the array,
@@ -138,6 +137,14 @@ contract Ballot {
 
     function getElection() public view returns (string memory) {
         return ballotName;
+    }
+
+    function getElectionStartTime() public view returns (uint) {
+        return startTime;
+    }
+
+    function getElectionEndTime() public view returns (uint) {
+        return endTime;
     }
 
 }

@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link, Navigate, Redirect, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
 import Loading from '../components/Loading';
-import abi from '../artifacts/contracts/Ballot.sol/Ballot.json';
+import Waiting from '../components/Waiting';
+import abi from '../artifacts/contracts/Election.sol/Election.json';
+import Candidate from "../assets/candidate.png";
 require('dotenv').config();
 const ethers = require("ethers");
 
@@ -17,6 +19,7 @@ function VoteConfirm() {
     const [election, setElection] = useState();
     const [account, setAccount] = useState("");
     const [party, setParty] = useState();
+    const [pleaseWait, setWait] = useState(false);
     const { user } = useAuth0();
 
     const voteSuccessNavigate = useNavigate();
@@ -38,12 +41,13 @@ function VoteConfirm() {
             );
 
             const transaction = await contractFetched.vote(account, user.email);
+            setWait(true);
             await transaction.wait();
             console.log("Transaction Success");
             voteSuccessNavigate("/VoteSuccess");
         } catch (err) {
             console.error(err);
-            voteFailNavigate("/VoteFail", {state : {errr: err}});
+            voteFailNavigate("/VoteFail", { state: { errr: err } });
         }
     }
 
@@ -97,7 +101,7 @@ function VoteConfirm() {
         addWalletListener();
         // addVote()
 
-    }, [isLoading, isAuthenticated, walletAddress,]);
+    }, [isLoading, isAuthenticated, walletAddress, pleaseWait]);
 
     if (isLoading || !isAuthenticated) {
         return <Loading loading={isLoading} size="large" />;
@@ -117,7 +121,7 @@ function VoteConfirm() {
             </div>
             <div class="container px-10 mx-0 py-5 min-w-full flex flex-col items-center ">
                 <div class="each flex rounded shadow text-grey-600 m-5 w-1/2 bg-gray-50 hover:bg-white" >
-                    <div class="sec self-center p-10"><img data="picture" class="h-32 w-32 border p-0.5 square-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1-MG1E0b4Ylgp-wnZjy82g3ZKHyx_FVDy00FfqqOk5y8euX43uhU4lN11y1qkG_Pjhwc" alt="" /></div>
+                    <div class="sec self-center p-10"><img data="picture" class="h-32 w-32 border p-0.5 square-full" src={Candidate} alt="" /></div>
                     <div class="sec self-center p-2 w-64">
                         <div class="name text-2xl font-bold py-2">{candidate}</div>
                         <div class="title text-xl font-semibold text-gray-800 -mt-1 py-2">{party}</div>
@@ -127,10 +131,15 @@ function VoteConfirm() {
                         )}.....{account.substring(30)}</div>
                     </div>
                 </div>
+                {
+                    !pleaseWait ? <button onClick={confirmVoteClick} type="button" class="flex flex-col items-center py-2 px-4 text-3xl font-medium text-center text-white border bg-gray-800 border-orange-500 hover:bg-gray-700 focus:ring-4 focus:ring-orange-300 focus:outline-none rounded-lg mr-3 md:mr-0">
+                        Confirm Vote
+                    </button> :
+                        <div>
+                            <Waiting size="large" />
+                        </div>
+                }
 
-                <button onClick={confirmVoteClick} type="button" class="flex flex-col items-center py-2 px-4 text-3xl font-medium text-center text-white border bg-gray-800 border-orange-500 hover:bg-gray-700 focus:ring-4 focus:ring-orange-300 focus:outline-none rounded-lg mr-3 md:mr-0">
-                    Confirm Vote
-                </button>
 
             </div>
 

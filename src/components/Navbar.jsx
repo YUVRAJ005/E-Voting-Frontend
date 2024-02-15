@@ -26,8 +26,8 @@ function Navbar() {
                         <ul class="flex flex-wrap -mb-px">
                             
                             <li class="mr-2">
-                                <Link to="/" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-orange-600 hover:border-gray-300 ">
-                                    Live
+                                <Link to="/Elections" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-orange-600 hover:border-gray-300 ">
+                                    Elections
                                 </Link>
                             </li>
                             <li class="mr-2">

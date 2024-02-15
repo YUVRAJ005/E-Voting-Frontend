@@ -2,20 +2,20 @@ const { ethers, run, network } = require("hardhat")
 
 //npx hardhat run .\scripts\deploy.js
 // async main
-//"City Election",1699401600,1731024000,["0x85c74224865C5053e95498Aa81ed968002bfdD72","0x7f25A6Bc607aA77D8C9dda4EbF72cBD1eE3113F4"],["Nitin Gadkari", "Rahul Gandhi"],["BJP","Congress"]
+// "NITR Election",1699401600,1731024000,["0x85c74224865C5053e95498Aa81ed968002bfdD72","0x7f25A6Bc607aA77D8C9dda4EbF72cBD1eE3113F4"],["Candidate A", "Candidate B"],["Party A","Party B"]
 
 async function main() {
-  const Ballot = await ethers.getContractFactory("Ballot")
+  const Election = await ethers.getContractFactory("Election")
   console.log("Deploying contract...")
-  const ballot = await Ballot.deploy("City Election",1699401600,1731024000,["0x85c74224865C5053e95498Aa81ed968002bfdD72","0x7f25A6Bc607aA77D8C9dda4EbF72cBD1eE3113F4"],["Nitin Gadkari", "Rahul Gandhi"],["BJP","Congress"])
-  await ballot.waitForDeployment()
-  console.log(`Deployed contract to: ${ballot.target}`)
+  const election = await Election.deploy("NITR Election",1699401600,1731024000,["0x85c74224865C5053e95498Aa81ed968002bfdD72","0x7f25A6Bc607aA77D8C9dda4EbF72cBD1eE3113F4"],["Candidate A", "Candidate B"],["Party A","Party B"])
+  await election.waitForDeployment()
+  console.log(`Deployed contract to: ${election.target}`)
  
   // what happens when we deploy to our hardhat network?
   // if (network.config.chainId === 11155111 && process.env.ETHERSCAN_API_KEY) {
   //   console.log("Waiting for block confirmations...")
-  //   await ballot.deployTransaction.wait(2)
-  //   await verify(ballot.address, [])
+  //   await election.deployTransaction.wait(2)
+  //   await verify(election.address, [])
   // }
 
 }
