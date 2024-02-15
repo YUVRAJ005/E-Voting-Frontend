@@ -5,8 +5,7 @@ pragma solidity 0.8.19;
 
 /**
  * @title Election
- * @dev Implements voting process along with vote delegation
- */
+*/
 contract Election {
     string ballotName;
     uint256 startTime;
@@ -92,8 +91,8 @@ contract Election {
         );
         Voter storage sender = voters[msg.sender];
         require(accountUsed[email]==false && !sender.voted, "Already voted.");
-        //accountUsed[email] = true;
-        //sender.voted = true;
+        accountUsed[email] = true;
+        sender.voted = true;
         sender.vote = proposal;
 
         // If 'proposal' is out of the range of the array,
