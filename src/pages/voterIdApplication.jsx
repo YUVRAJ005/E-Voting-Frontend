@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ApplicationSuccess from '../components/ApplicationSuccess';
-
-
 
 function VoterIdApplication() {
 
@@ -15,25 +13,28 @@ function VoterIdApplication() {
     let [pincode, setPincode] = useState("");
     const [submitted, setSubmitted] = useState(false);
 
-    function handleSubmit(e) {
-        setSubmitted(false);
+    useEffect(() => {
+        
+    }, [submitted]);
+
+    async function handleSubmit(e) {
         phone = Number(phone);
         pincode = Number(pincode);
         const vApplication = { name: name, gender: gender, dob: dob, phone: phone, email: email, address: address, pincode: pincode };
-        
 
-        axios.post(process.env.REACT_APP_SERVER + '/VoterIdApplication', vApplication)
-            .then(function (response) {
+        //console.log(vApplication);
+
+        axios.post(process.env.REACT_APP_SERVER + '/voterIdApplication', vApplication)
+            .then((response) => {
                 console.log(response);
                 setSubmitted(true);
             })
-            .catch(function (error) {
+            .catch((error) => {
                 console.log(error);
             });
 
         e.preventDefault();
     };
-
 
     return (
 
@@ -46,7 +47,7 @@ function VoterIdApplication() {
                             <form onSubmit={handleSubmit}>
                                 <div class="grid md:grid-cols-2 md:gap-10">
                                     <div class="relative z-0 w-full mb-6 group">
-                                        <input value={name} onChange={e => setname(e.target.value)} type="text" maxLength="15" name="name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-800 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-orange-600 peer" placeholder=" " required/>
+                                        <input value={name} onChange={e => setname(e.target.value)} type="text" maxLength="15" name="name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-800 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-orange-600 peer" placeholder=" " required />
                                         <label for="floating_first_name" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-orange-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First name</label>
                                     </div>
                                     <div class="grid md:grid-cols-2 md:gap-10">

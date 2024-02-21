@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import { Link, Navigate } from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from 'axios';
 
@@ -8,9 +7,11 @@ import axios from 'axios';
 function VoterProfile(){
     const { user } = useAuth0();
     const[profile, setProfile] = useState({});
+    console.log(user)
     
     useEffect(() => {
-        axios.get(process.env.REACT_APP_SERVER + '/user/profile/' + user.email)
+
+        axios.get(process.env.REACT_APP_SERVER + '/user/profile/' + user.nickname)
         .then((response)=> {
             setProfile(response.data);
         })
