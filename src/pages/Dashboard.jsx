@@ -122,7 +122,7 @@ function Dashboard() {
 
 
     return (
-        <div><h1 class="text-5xl font-bold mx-48 mt-32 font-mono">Dashboard</h1>
+        <div><h1 class="text-3xl font-bold mx-48 mt-36 font-mono">Dashboard</h1>
             <VoterProfile />
 
             <div class="container px-10 mx-0 min-w-full flex flex-col items-center">
@@ -136,11 +136,11 @@ function Dashboard() {
                 </div>
 
                 {walletAddress && walletAddress.length > 0 ?
-                    <button onClick={handlevoteClick} type="button" class="flex flex-col items-center py-2 px-4 text-3xl font-medium text-center text-white border bg-gray-800 border-orange-500 hover:bg-gray-700 focus:ring-4 focus:ring-orange-300 focus:outline-none rounded-lg mr-3 md:mr-0">
+                    <button onClick={handlevoteClick} type="button" class="flex flex-col items-center py-2 px-4 text-2xl font-medium text-center text-white border bg-gray-800 border-orange-500 hover:bg-gray-700 focus:ring-4 focus:ring-orange-300 focus:outline-none rounded-lg mr-3 md:mr-0">
                         VOTE
                     </button>
                     :
-                    <button onClick={connectWallet} type="button" class="flex flex-col items-center py-2 px-4 text-3xl font-medium text-center text-white border bg-gray-800 border-orange-500 hover:bg-gray-700 focus:ring-4 focus:ring-orange-300 focus:outline-none rounded-lg mr-3 md:mr-0">
+                    <button onClick={connectWallet} type="button" class="flex flex-col items-center py-2 px-4 text-2xl font-medium text-center text-white border bg-gray-800 border-orange-500 hover:bg-gray-700 focus:ring-4 focus:ring-orange-300 focus:outline-none rounded-lg mr-3 md:mr-0">
                         Connect Wallet
                     </button>
                 }

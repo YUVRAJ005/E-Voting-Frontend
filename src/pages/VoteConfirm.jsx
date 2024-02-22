@@ -120,19 +120,19 @@ function VoteConfirm() {
                     : ""}</h1>
             </div>
             <div class="container px-10 mx-0 py-5 min-w-full flex flex-col items-center ">
-                <div class="each flex rounded shadow text-grey-600 m-5 w-1/2 bg-gray-50 hover:bg-white" >
+                <div class="each flex rounded shadow text-grey-600 m-5 w-2/5 bg-gray-50 hover:bg-white" >
                     <div class="sec self-center p-10"><img data="picture" class="h-32 w-32 border p-0.5 square-full" src={Candidate} alt="" /></div>
                     <div class="sec self-center p-2 w-64">
-                        <div class="name text-2xl font-bold py-2">{candidate}</div>
-                        <div class="title text-xl font-semibold text-gray-800 -mt-1 py-2">{party}</div>
-                        <div class="title text-xl font-semibold text-gray-800 -mt-1 py-2">{account.substring(
+                        <div class="name text-xl font-bold py-2">{candidate}</div>
+                        <div class="title text-lg font-semibold text-gray-800 -mt-1 py-2">{party}</div>
+                        <div class="title text-lg font-semibold text-gray-800 -mt-1 py-2">{account.substring(
                             0,
                             14
                         )}.....{account.substring(30)}</div>
                     </div>
                 </div>
                 {
-                    !pleaseWait ? <button onClick={confirmVoteClick} type="button" class="flex flex-col items-center py-2 px-4 text-3xl font-medium text-center text-white border bg-gray-800 border-orange-500 hover:bg-gray-700 focus:ring-4 focus:ring-orange-300 focus:outline-none rounded-lg mr-3 md:mr-0">
+                    !pleaseWait ? <button onClick={confirmVoteClick} type="button" class="flex flex-col items-center py-2 px-4 text-2xl font-medium text-center text-white border bg-gray-800 border-orange-500 hover:bg-gray-700 focus:ring-4 focus:ring-orange-300 focus:outline-none rounded-lg mr-3 md:mr-0">
                         Confirm Vote
                     </button> :
                         <div>

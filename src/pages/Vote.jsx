@@ -91,8 +91,8 @@ function Vote() {
             <div class="each flex rounded shadow w-max text-grey-600 mb-5 hover:bg-white bg-gray-50">
                 <div class="sec self-center p-2 pr-1"><img data="picture" class="h-20 w-200 border p-0.5 square-full" src={Candidate} alt="" /></div>
                 <div class="sec self-center p-2 w-64">
-                    <div onClick={() => handleCandidateClick(candidateinfo)}  class="name text-lg">{candidateinfo[0]}</div>
-                    <div class="title text-base text-gray-800 -mt-1">{candidateinfo[1]}</div>
+                    <div onClick={() => handleCandidateClick(candidateinfo)}  class="name font-bold text-lg">{candidateinfo[0]}</div>
+                    <div class="title font-bold text-base text-gray-800 -mt-1">{candidateinfo[1]}</div>
                 </div>
             </div>
         </div>
@@ -128,7 +128,7 @@ function Vote() {
                     )}.....${walletAddress.substring(35)}`
                     : ""}</h1>
             </div>
-            <div class="flex flex-col justify-center items-center  pt-4">
+            <div class="flex flex-col justify-center items-center  pt-8">
                 <div class="grid grid-cols-3 gap-5">
                     {clist}
                 </div>
