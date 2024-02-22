@@ -5,6 +5,7 @@ import ApplicationSuccess from '../components/ApplicationSuccess';
 function VoterIdApplication() {
 
     const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     let [phone, setPhone] = useState("");
     const [name, setname] = useState("");
     const [gender, setGender] = useState("");
@@ -14,13 +15,13 @@ function VoterIdApplication() {
     const [submitted, setSubmitted] = useState(false);
 
     useEffect(() => {
-        
+
     }, [submitted]);
 
     async function handleSubmit(e) {
         phone = Number(phone);
         pincode = Number(pincode);
-        const vApplication = { name: name, gender: gender, dob: dob, phone: phone, email: email, address: address, pincode: pincode };
+        const vApplication = { name: name, gender: gender, dob: dob, phone: phone, email: email, password: password, address: address, pincode: pincode };
 
         //console.log(vApplication);
 
@@ -48,7 +49,7 @@ function VoterIdApplication() {
                                 <div class="grid md:grid-cols-2 md:gap-10">
                                     <div class="relative z-0 w-full mb-6 group">
                                         <input value={name} onChange={e => setname(e.target.value)} type="text" maxLength="15" name="name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-800 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-orange-600 peer" placeholder=" " required />
-                                        <label for="floating_first_name" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-orange-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First name</label>
+                                        <label for="floating_first_name" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-orange-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Full name</label>
                                     </div>
                                     <div class="grid md:grid-cols-2 md:gap-10">
                                         <div class="relative z-0 w-full mb-6 group">
@@ -69,14 +70,22 @@ function VoterIdApplication() {
                                 </div>
 
                                 <div class="grid md:grid-cols-2 md:gap-10">
-                                    <div class="relative z-0 w-full mb-6 group">
-                                        <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" pattern="[6-9]{1}[0-9]{1}[0-9]{8}" name="phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-gray-800 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-orange-600 peer" placeholder="" required />
-                                        <label for="floating_phone" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-orange-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone number</label>
+                                    <div class="grid md:grid-cols-2 md:gap-10">
+                                        <div class="relative z-0 w-full mb-6 group">
+                                            <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" pattern="[6-9]{1}[0-9]{1}[0-9]{8}" name="phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-gray-800 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-orange-600 peer" placeholder=" " required />
+                                            <label for="floating_phone" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-orange-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone number</label>
+                                        </div>
+                                        <div class="relative z-0 w-full mb-6 group">
+                                            <input value={email} onChange={e => setEmail(e.target.value)} type="email" name="email" id="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-800 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-orange-600 peer" placeholder=" " required />
+                                            <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-orange-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
+                                        </div>
                                     </div>
+
                                     <div class="relative z-0 w-full mb-6 group">
-                                        <input value={email} onChange={e => setEmail(e.target.value)} type="email" name="email" id="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-800 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-orange-600 peer" placeholder=" " required />
-                                        <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-orange-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
+                                        <input value={password} onChange={e => setPassword(e.target.value)} type="password" minLength="8" id="floating_phone" name="password" class="block py-2.5 px-0 w-full text-sm text-gray-800 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-orange-600 peer" placeholder=" " required />
+                                        <label for="floating_phone" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-orange-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
                                     </div>
+
                                 </div>
 
                                 <div class="grid md:grid-cols-2 md:gap-10 pb-3">
@@ -98,6 +107,7 @@ function VoterIdApplication() {
                 </div>}
             {submitted && <ApplicationSuccess />}
         </div>
+
     );
 }
 

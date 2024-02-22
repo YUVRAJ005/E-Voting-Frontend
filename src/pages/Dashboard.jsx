@@ -4,14 +4,15 @@ import { useAuth0 } from "@auth0/auth0-react";
 import VoterProfile from '../components/Dashboard/VoterProfile';
 import Loading from '../components/Loading';
 import abi from '../artifacts/contracts/Election.sol/Election.json';
+import VerifyEmail from '../components/VerifyEmail';
 require('dotenv').config();
 const ethers = require("ethers");
 
 
 function Dashboard() {
 
-    const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
-
+    const { isAuthenticated, isLoading, loginWithRedirect, user } = useAuth0();
+    console.log(user)
     const [walletAddress, setWalletAddress] = useState("");
 
     const votenavigate = useNavigate();
@@ -114,6 +115,9 @@ function Dashboard() {
 
     if (isLoading || !isAuthenticated) {
         return <Loading loading={isLoading} size="large" />;
+    }
+    else if (!user.email_verified) {
+        return <VerifyEmail />;
     }
 
 

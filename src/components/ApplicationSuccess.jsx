@@ -6,10 +6,11 @@ function ApplicationSuccess() {
     return (
         <div>
             <div class="text-center mt-32">
-                <h1 class="text-5xl font-bold mx-48 mt-36 font-mono">Application Submitted Successfully</h1>
+                <h3 class="text-3xl font-bold mx-48 mt-36 font-mono">Application Submitted Successfully</h3>
+                <h5 class="text-xl  mx-48  font-mono">If your applicaiton is accepted, registered email will receive verification email.</h5>
             </div>
             <div class="flex my-16 justify-center items-center">
-                <img src={Success} class="h-60 w-60" alt="Application Submitted" />
+                <img src={Success} class="w-1/12" alt="Application Submitted" />
             </div>
         </div>
         
