@@ -122,7 +122,7 @@ function Dashboard() {
 
 
     return (
-        <div><h1 class="text-3xl font-bold mx-48 mt-36 font-mono">Dashboard</h1>
+        <div><h1 class="text-3xl font-bold py-6 px-4 mx-auto max-w-screen-xl mt-36 font-mono">Dashboard</h1>
             <VoterProfile />
 
             <div class="container px-10 mx-0 min-w-full flex flex-col items-center">

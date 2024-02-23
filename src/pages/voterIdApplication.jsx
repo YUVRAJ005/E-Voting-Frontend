@@ -25,7 +25,7 @@ function VoterIdApplication() {
 
         //console.log(vApplication);
 
-        axios.post(process.env.REACT_APP_SERVER + '/voterIdApplication', vApplication)
+        axios.post(process.env.REACT_APP_SERVER + '/register/voterRegistration', vApplication)
             .then((response) => {
                 console.log(response);
                 setSubmitted(true);

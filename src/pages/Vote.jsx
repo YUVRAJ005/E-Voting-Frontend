@@ -88,7 +88,7 @@ function Vote() {
 
     const clist = candidate.map((candidateinfo) =>
         <div key={candidateinfo[2]}>
-            <div class="each flex rounded shadow w-max text-grey-600 mb-5 hover:bg-white bg-gray-50">
+            <div class="each flex rounded shadow w-max text-grey-600 mb-5 hover:bg-white bg-gray-50" onClick={() => handleCandidateClick(candidateinfo)}>
                 <div class="sec self-center p-2 pr-1"><img data="picture" class="h-20 w-200 border p-0.5 square-full" src={Candidate} alt="" /></div>
                 <div class="sec self-center p-2 w-64">
                     <div onClick={() => handleCandidateClick(candidateinfo)}  class="name font-bold text-lg">{candidateinfo[0]}</div>
@@ -118,9 +118,9 @@ function Vote() {
 
     return (
         <div>
-            <h1 class="text-xl font-bold mx-48 mt-32 font-mono">{election}</h1>
+            <h1 class="text-3xl font-bold py-6 px-4 mx-auto max-w-screen-xl mt-36 font-mono">{election}</h1>
 
-            <div class="mx-48 font-mono"><h1 class="text-xl font-bold font-mono leading-none tracking-tight ">
+            <div class="mb-9 px-4 mx-auto max-w-screen-xl font-bold font-mono"><h1 class="text-xl font-bold font-mono leading-none tracking-tight ">
                 {walletAddress && walletAddress.length > 0
                     ? `Connected Account: ${walletAddress.substring(
                         0,
@@ -128,7 +128,7 @@ function Vote() {
                     )}.....${walletAddress.substring(35)}`
                     : ""}</h1>
             </div>
-            <div class="flex flex-col justify-center items-center  pt-8">
+            <div class="flex flex-col mb-9 px-4 mx-auto max-w-screen-xl pt-8">
                 <div class="grid grid-cols-3 gap-5">
                     {clist}
                 </div>

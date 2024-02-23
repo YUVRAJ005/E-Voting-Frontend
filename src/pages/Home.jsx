@@ -1,9 +1,9 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Link, NavLink, Navigate } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import Vote_Now from '../assets/Vote_Now.jpg';
 import VoteNow from '../components/VoteNow';
 
-function HomeSec() {
+function Home() {
     return (
     <div>
         <section class="bg-white mt-16">
@@ -27,4 +27,4 @@ function HomeSec() {
 
 )};
 
-export default HomeSec;
+export default Home;

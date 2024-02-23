@@ -109,9 +109,9 @@ function VoteConfirm() {
 
     return (
         <div>
-            <h1 class="text-xl font-bold mx-48 mt-32 font-mono">{election}</h1>
+            <h1 class="text-3xl font-bold py-6 px-4 mx-auto max-w-screen-xl mt-36 font-mono">{election}</h1>
 
-            <div class="mx-48 font-mono"><h1 class="text-xl font-bold font-mono leading-none tracking-tight ">
+            <div class="mb-9 px-4 mx-auto max-w-screen-xl font-bold font-mono"><h1 class="text-xl font-bold font-mono leading-none tracking-tight ">
                 {walletAddress && walletAddress.length > 0
                     ? `Connected Account: ${walletAddress.substring(
                         0,
@@ -119,8 +119,8 @@ function VoteConfirm() {
                     )}.....${walletAddress.substring(35)}`
                     : ""}</h1>
             </div>
-            <div class="container px-10 mx-0 py-5 min-w-full flex flex-col items-center ">
-                <div class="each flex rounded shadow text-grey-600 m-5 w-2/5 bg-gray-50 hover:bg-white" >
+            <div class="container px-10 mx-0 py-2 min-w-full flex flex-col items-center ">
+                <div class="each flex rounded shadow mt-2 mb-9 text-grey-600 w-2/5 bg-gray-50 hover:bg-white" >
                     <div class="sec self-center p-10"><img data="picture" class="h-32 w-32 border p-0.5 square-full" src={Candidate} alt="" /></div>
                     <div class="sec self-center p-2 w-64">
                         <div class="name text-xl font-bold py-2">{candidate}</div>
