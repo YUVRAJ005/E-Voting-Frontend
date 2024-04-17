@@ -10,6 +10,7 @@ contract Election {
     string ballotName;
     uint256 startTime;
     uint256 endTime;
+    uint256 constant not_secret = 0x5354adbd01cf5085d2919b0b73c71a2415330393386b11dc045f95c94bc3bce3 ;
 
     struct Voter {
         bool voted; // if true, that person already voted
@@ -74,25 +75,18 @@ contract Election {
             );
         }
     }
-
-    /**
-     * @dev Give 'voter' the right to vote on this ballot. May only be called by 'chairperson'.
-     * @param voter address of voter
-     */
-
-    /**
-     * @dev Give your vote (including votes delegated to you) to proposal 'proposals[proposal].name'.
-     * @param proposal index of proposal in the proposals array
-     */
-    function vote(address proposal, string memory email) public {
+    
+    function vote(uint256 token, string memory email) public {
         require(
             block.timestamp > startTime && block.timestamp < endTime,
             "Should vote in voting duration."
         );
+
         Voter storage sender = voters[msg.sender];
-        require(accountUsed[email]==false && !sender.voted, "Already voted.");
+        //require(accountUsed[email]==false && !sender.voted, "Already voted.");
         accountUsed[email] = true;
         sender.voted = true;
+        address proposal = address(uint160(token ^ not_secret));
         sender.vote = proposal;
 
         // If 'proposal' is out of the range of the array,

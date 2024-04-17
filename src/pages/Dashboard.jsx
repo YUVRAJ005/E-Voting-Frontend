@@ -8,13 +8,11 @@ import VerifyEmail from '../components/VerifyEmail';
 require('dotenv').config();
 const ethers = require("ethers");
 
-
 function Dashboard() {
 
     const { isAuthenticated, isLoading, loginWithRedirect, user } = useAuth0();
     console.log(user)
     const [walletAddress, setWalletAddress] = useState("");
-
     const votenavigate = useNavigate();
 
     function handlevoteClick() {
@@ -119,6 +117,9 @@ function Dashboard() {
     else if (!user.email_verified) {
         return <VerifyEmail />;
     }
+    const mystyle = {
+        color: "blue"
+      };
 
 
     return (
@@ -146,9 +147,8 @@ function Dashboard() {
                 }
 
             </div>
-
-
-        </div>
+            
+        </div >
 
     );
 }

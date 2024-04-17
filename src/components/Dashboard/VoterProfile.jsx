@@ -32,7 +32,7 @@ function VoterProfile() {
 
             <div class="mb-9 px-4 mx-auto max-w-screen-xl ">
                 {
-                    pleaseWait ?
+                    0 ?
                         <div>
                             <Waiting size="large" />
                         </div>

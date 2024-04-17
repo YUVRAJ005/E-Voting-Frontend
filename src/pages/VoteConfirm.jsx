@@ -1,3 +1,4 @@
+/* global BigInt */
 import React, { useState, useEffect } from 'react';
 import { Link, Navigate, Redirect, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
@@ -6,6 +7,7 @@ import Waiting from '../components/Waiting';
 import abi from '../artifacts/contracts/Election.sol/Election.json';
 import Candidate from "../assets/candidate.png";
 require('dotenv').config();
+
 const ethers = require("ethers");
 
 function VoteConfirm() {
@@ -40,11 +42,16 @@ function VoteConfirm() {
                 signer
             );
 
-            const transaction = await contractFetched.vote(account, user.email);
+            const secret = BigInt(process.env.REACT_APP_INPUT_ENCODE);
+            const proposal = BigInt('0x' + account.slice(2));
+            const encodedToken = proposal ^ secret;
+            //console.log(encodedToken.toString());
+
+            const transaction = await contractFetched.vote(encodedToken, user.email);
             setWait(true);
-            await transaction.wait();
-            console.log("Transaction Success");
-            voteSuccessNavigate("/VoteSuccess");
+            const receipt = await transaction.wait();
+            console.log("Transaction Success " + JSON.stringify(receipt) + '\n' + receipt.hash);
+            voteSuccessNavigate("/VoteSuccess", { state: { receipt: receipt } });
         } catch (err) {
             console.error(err);
             voteFailNavigate("/VoteFail", { state: { errr: err } });
