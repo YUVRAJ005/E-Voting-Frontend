@@ -1,7 +1,11 @@
 # VoteIN 
 ## Ethereum based online voting system
-
 VoteIN is an ethereum based E-Voting system designed to provide a user-friendly interface for secure and transparent online voting, consisting of two main components: frontend and backend. The backend, powered by Node.js, handles interactions with IPFS, ensuring scalability and security through encryption techniques. In this repository ReactJS serves as the frontend framework, facilitating interaction with Ethereum blockchain and a responsive design for accessibility across various devices.
+
+### Features
+* Candidate listing and election details
+* Secure voting mechanism
+* Real-time vote count updates
 
 ## Installation
 
